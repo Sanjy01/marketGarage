@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bright Home Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      background: url('https://wallpaperaccess.com/full/1599948.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
+    nav {
+      background: linear-gradient(90deg, #406789, #00f2fe);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #003366;
+    }
+    .sidebar-toggle {
+      position: absolute;
+      top: 70px;
+      left: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 2;
+      background: #3c6c94;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .sidebar {
+      width: 300px;
+      background: linear-gradient(135deg, #a1c4fd, #6d95a8);
+      padding: 30px;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+      display: none;
+      flex-direction: column;
+      animation: slideIn 0.3s ease-out;
+      position: absolute;
+      top: 110px;
+      left: 0;
+      height: calc(100% - 110px);
+    }
+    .sidebar.show {
+      display: flex;
+    }
+    .sidebar-item {
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #003366;
+      background: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s;
+    }
+    .sidebar-item:hover {
+      background: #e6f0ff;
+    }
+    .main-content {
+      padding: 140px 40px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .home-box {
+      background: rgba(184, 241, 219, 0.9);
+      padding: 10px;
+      border-radius: 20px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      opacity: 0.7;
+    }
+    .home-box h1 {
+      font-size: 32px;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+    .home-box p {
+      font-size: 18px;
+      color: #090101;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo" style="font-size: 20px; font-weight: bold; color: white;">MG</div>
+    <div class="nav-links">
+      <a href="#about.html">About</a>
+      <a href="#contacts">Contacts</a>
+      <a href="#resources">Resources</a>
+      <a href="products.html">Products</a>
+    </div>
+  </nav>
+
+  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-item" onclick="window.location.href='login.html'">👤 User Profile</div>
+    <div class="sidebar-item" onclick="window.location.href='review.html'">⭐ Rating: ★★★★☆</div>
+    <div class="sidebar-item" onclick="window.location.href='location.html'">📍 Location Map</div>
+    <div class="sidebar-item" onclick="window.location.href='create.html'">➕ Create</div>
+    <div class="sidebar-item" onclick="logout()">🚪 Logout</div>
+  </div>
+
+  <div class="main-content">
+    <div class="home-box">
+      <h1>Welcome to Material Garage</h1>
+      <p>Use the navigation bar or toggle menu to explore your profile, check ratings, view the map, and access resources and branches.</p>
+    </div>
+  </div>
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("show");
+    }
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC8-SNA5gxBQYR386CHCCJgLGpgXz2XG7w",
+      authDomain: "garage-95407.firebaseapp.com",
+      projectId: "garage-95407",
+      storageBucket: "garage-95407.firebasestorage.app",
+      messagingSenderId: "685091913803",
+      appId: "1:685091913803:web:f0b3ff43bf4058d01b4dce",
+      measurementId: "G-W1BV8NZ7V2"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function logout() {
+      auth.signOut().then(() => {
+        window.location.href = 'login.html'; // redirect to login page
+      }).catch((error) => {
+        alert("Logout failed: " + error.message);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Product - Circular Marketplace</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">Add a New Product</h2>
+    <!-- Notice we've removed the action attribute to handle submission via JavaScript -->
+    <form id="productForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="imageUrl" class="form-label">Product Image URL</label>
+        <input type="url" class="form-control" id="imageUrl" name="imageUrl" placeholder="https://example.com/image.jpg" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="value" class="form-label">Estimated Value ($)</label>
+        <input type="number" class="form-control" id="value" name="value" step="0.01" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="amount" class="form-label">Quantity</label>
+        <input type="number" class="form-control" id="amount" name="amount" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select class="form-select" id="category" name="category" required>
+          <option value="">Choose...</option>
+          <option>Electronics</option>
+          <option>Clothing</option>
+          <option>Furniture</option>
+          <option>Books</option>
+          <option>Household</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="condition" class="form-label">Condition</label>
+        <select class="form-select" id="condition" name="condition" required>
+          <option value="">Choose...</option>
+          <option>New</option>
+          <option>Used - Good</option>
+          <option>Used - Fair</option>
+          <option>Refurbished</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="location" class="form-label">Location (Optional)</label>
+        <input type="text" class="form-control" id="location" name="location">
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit Product</button>
+    </form>
+  </div>
+
+  <script>
+    // Replace these values with your Firebase project configuration.
+    const firebaseConfig = {
+        apiKey: FIREBASE_API_KEY,
+        authDomain: FIREBASE_AUTH_DOMAIN,
+        projectId: FIREBASE_PROJECT_ID,
+        storageBucket: FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+        appId: FIREBASE_APP_ID,
+        measurementId: FIREBASE_MEASUREMENT_ID
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Listen for form submission
+    document.getElementById('productForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Gather form values
+      const name = document.getElementById('name').value;
+      const description = document.getElementById('description').value;
+      const imageUrl = document.getElementById('imageUrl').value;
+      const value = parseFloat(document.getElementById('value').value);
+      const amount = parseInt(document.getElementById('amount').value, 10);
+      const category = document.getElementById('category').value;
+      const condition = document.getElementById('condition').value;
+      const location = document.getElementById('location').value;
+
+      // Prepare product data to save
+      const productData = {
+        name: name,
+        description: description,
+        imageUrl: imageUrl,
+        value: value,
+        amount: amount,
+        category: category,
+        condition: condition,
+        location: location ? location : null,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      };
+
+      // Save the product data in the "products" collection
+      db.collection('products').add(productData)
+        .then(() => {
+          alert('Product submitted successfully!');
+          document.getElementById('productForm').reset();
+        })
+        .catch((error) => {
+          console.error("Error saving product: ", error);
+          alert("Error saving product: " + error.message);
+        });
+    });
+  </script>
+</body>
+</html>

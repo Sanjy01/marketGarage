@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Products - Material Garage</title>
+  <style>
+    /* Set background image for the body */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('./assets/pic.jpg'); /* Replace with your background image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    /* Optional dark overlay for better contrast */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      padding-top: 20px;
+    }
+
+    .listings {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 140px;
+      padding: 40px;
+      justify-content: center;
+    }
+
+    .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .info {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .info h3 {
+      margin: 0 0 5px 0;
+    }
+
+    .info p {
+      margin: 0 0 10px 0;
+      color: #555;
+    }
+
+    .view-more-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #ff6600;
+      color: white;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .view-more-btn:hover {
+      background-color: #e65c00;
+    }
+  </style>
+</head>
+<body>
+  <h1>Our Products</h1>
+
+  <div class="listings">
+    <div class="card">
+      <img src="./assets/rusted mental.jpg" alt="Item Image">
+      <div class="info">
+        <h3>rusted metal</h3>
+        <p>₹2000 • Delhi</p>
+        <a href="#" class="view-more-btn">View More</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./assets/wood dust.jpg" alt="Item Image">
+      <div class="info">
+        <h3>wood dust</h3>
+        <p>₹1000 • Mumbai</p>
+        <a href="#" class="view-more-btn">View More</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="./assets/glass.jpg" alt="Item Image">
+      <div class="info">
+        <h3>broken glass</h3>
+        <p>₹500 • Bangalore</p>
+        <a href="#" class="view-more-btn">View More</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

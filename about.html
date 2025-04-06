@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - Material Garage</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('./assets/about-bg.jpg'); /* Replace with your image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      position: relative;
+      color: white;
+    }
+
+    /* Optional dark overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: auto;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(6px);
+      color: #f0f0f0;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    .content h2 {
+      color: #ffe;
+    }
+
+    .content p {
+      line-height: 1.6;
+    }
+
+    nav {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .nav-link {
+      color: #ddd;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #fff;
+    }
+
+    .home-tag {
+      color: #bbb;
+      font-size: 0.9em;
+      display: inline-block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>About Material Garage</h1>
+    <nav>
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="products.html">Products</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h2>Who We Are</h2>
+    <p>
+      At Material Garage, we believe in the power of recycling and upcycling to build a sustainable future.
+      We specialize in sourcing, collecting, and supplying reusable and scrap materials like rusted metal, wood dust, broken glass, and more.
+    </p>
+
+    <h2>Our Mission</h2>
+    <p>
+      Our mission is to reduce waste and repurpose discarded materials by making them available to businesses, artists, and innovators who see value where others see trash.
+    </p>
+
+    <h2>Why Choose Us</h2>
+    <p>
+      With a growing network across major Indian cities, we ensure timely delivery, quality inspection, and fair pricing. We are more than just a supplier—we are your partner in sustainability.
+    </p>
+
+    <p class="home-tag">Back to <a href="index.html" class="nav-link">Home</a></p>
+  </div>
+</body>
+</html>
